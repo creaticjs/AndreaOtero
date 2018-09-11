@@ -1,0 +1,41 @@
+body {
+    background-image: url(http://www.fondoswiki.com/Uploads/fondoswiki.com/ImagenesGrandes/futbol-femenino.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: bold;
+    margin: 3%;
+}
+
+#clasi-tabla {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+table {
+    border: 2px solid black;
+    background-color: #61380B;
+    opacity: 0.8;
+}
+td {
+    margin: 3%;
+}
+
+.categoria {
+    margin: 2%;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+
+

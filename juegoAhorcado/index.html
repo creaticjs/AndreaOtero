@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	    crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" media="screen" href="css/estilos.css" />
+	<title>Ahorcado</title>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+	<div id="contenedor">
+		<h2 style="font-size: 2.5rem; color: #fff; font-weight: bold">¿Te ahorcarán?</h2>
+		<img style="width: 18%" id="ahorcado" alt="imagen pixel" src="https://img.clipartxtras.com/b220e5af8b7612c12bfcee92bfd4e29b_sheriff-clipart-clipground-sheriff-clipart-free_2885-3079.png">
+		<div class="row">
+			<div class="col-md-6">
+				<h3 style="font-size: 2rem;color: #fff; font-weight: bold">Teclado</h3>
+				<form id="formulario">
+					<h3 style="font-size: 2rem;color: #fff; font-weight: bold">Tiempo</h3>
+					<p style="font-size: 2rem;color: #fff; font-weight: bold" id="tiempo">00:00:00</p>
+					<input style="background-color: #FF5733; font-size: 1.3rem; width: auto" type="button" value="Iniciar" id="empezar"
+					    onClick="comienzo();" class="envio">
+					<input style="background-color: #FFC300; font-size: 1.3rem; width: auto" type="button" value="Reiniciar" id="reiniciar"
+					    onClick="reinicio();" class="envio" disabled>
+					<input type="button" value="Borrar Cookie" id="oculto" onClick="borrarCookie('id');" class="oculto">
+				</form>
+			</div>
+			<div class="col-md-6">
+				<div id="palabra">
+					<h3 style="font-size: 2rem;color: #fff; font-weight: bold">Personaje</h3>
+					<p id="texto"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
