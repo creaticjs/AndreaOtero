@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Cinzel');
+    </style>
+    <title>Star Wars</title>
+</head>
+
+<body style="font-family: 'Cinzel', serif; background-image: url(http://getwallpapers.com/wallpaper/full/d/1/7/30099.jpg)">
+    <div class="container">
+        <section>
+            <img style="width: 30%; margin: 3%;" src="http://aws.hackingchristianity.net/wp-content/files/Star-Wars-Episode-7-The-Force-Awakens-Logo.jpg">
+        </section>
+        <section>
+            <h3 style="color: #fff">Vehículos de Star Wars</h3>
+            <div class="row" id="vehicles">
+
+            </div>
+        </section>
+
+    </div>
+</body>
+<script>
+    var peticion = new XMLHttpRequest();
+    var datosTxt = "";
+    var imageVehicles = [
+        "https://vignette.wikia.nocookie.net/starwars/images/f/ff/Sandcrawler.png/revision/latest?cb=20130812001443",
+        "https://vignette.wikia.nocookie.net/starwars/images/e/e1/Lukes_T-16_Skyhopper_TT.png/revision/latest?cb=20170520044701",
+        "https://vignette.wikia.nocookie.net/starwars/images/a/ac/X-34_landspeeder_EtU.png/revision/latest?cb=20160312051757",
+        "https://vignette.wikia.nocookie.net/thelastofthedroids/images/f/f7/TIE_Fighter.gif/revision/latest/scale-to-width-down/250?cb=20141007230617",
+        "https://vignette.wikia.nocookie.net/es.starwars/images/1/14/Rebspeeder_swenc.jpg/revision/latest?cb=20090101223531",
+        "https://vignette.wikia.nocookie.net/starwars/images/1/17/TIE_Bomber_BF2.png/revision/latest?cb=20170825000703",
+        "https://cdn.shopify.com/s/files/1/2182/7899/products/main_1024x1024.jpg?v=1523327070",
+        "https://www.syfy.com/sites/syfy/files/styles/1200x1200/public/wire/legacy/images/At-st.jpeg?itok=iXqB8iQr&timestamp=1497663261",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJEKErMW1OWEfipZIZaTO543Cc2-bhQSs6S3H6IaLKQXVOtzdS",
+        "https://lumiere-a.akamaihd.net/v1/images/the-khetanna_d1d5b294.jpeg?region=0%2C160%2C1560%2C879&width=768",
+    ];
+    peticion.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            vehicles = JSON.parse(this.responseText)
+            for(i=0; i<vehicles.results.length; i++)
+            {
+                datosTxt += "<div class=\"col-md-3 card\" style=\"width: 18rem; margin: 1%;\">" +
+                    
+                    "<div class=\"card-body\">" +
+                        "<img class=\"card-img-top\" src=" + imageVehicles[i] + " alt=\"Card image cap\">" +
+                    "<h5 class=\"card-title\">" + vehicles.results[i].name + "</h5>" +
+                    
+                    "<p class=\"card-text\">" +
+                    "<p>Modelo:" + vehicles.results[i].model+ "</p>" +
+                    "<p>Precio:" + vehicles.results[i].cost_in_credits + "</p>" +
+                    "<p>Mecánicos:" +vehicles.results[i].manufacturer + "</p>" +
+                    "</p></div></div>"
+
+            }
+            if(document.getElementById('vehicles'))
+            {
+                document.getElementById('vehicles').innerHTML = datosTxt;
+            }
+            
+        }
+    } 
+    peticion.open('GET','https://swapi.co/api/vehicles/',true);
+    peticion.send();
+</script>
+
+</html>

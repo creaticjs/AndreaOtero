@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Cinzel');
+    </style>
+    <title>Star Wars</title>
+</head>
+
+<body style="font-family: 'Cinzel', serif; background-image: url(http://getwallpapers.com/wallpaper/full/d/1/7/30099.jpg)">
+    <div class="container">
+        <section>
+            <img style="width: 30%; margin: 3%;" src="http://aws.hackingchristianity.net/wp-content/files/Star-Wars-Episode-7-The-Force-Awakens-Logo.jpg">
+        </section>
+        <section>
+            <h3 style="color: #fff">Planetas de Star Wars</h3>
+            <div class="row" id="planets">
+
+            </div>
+        </section>
+
+    </div>
+</body>
+<script>
+    var peticion = new XMLHttpRequest();
+    var datosTxt = "";
+    var imagePlanets = [
+        "https://lumiere-a.akamaihd.net/v1/images/databank_alderaan_01_169_4a5264e2.jpeg?region=0%2C0%2C1560%2C878&width=768",
+        "https://vignette.wikia.nocookie.net/starwars/images/9/93/Great_Temple_RO.png/revision/latest?cb=20180130044514",
+        "http://en.es-static.us/upl/2017/03/hoth-star-wars.jpg",
+        "https://lumiere-a.akamaihd.net/v1/images/Dagobah_890df592.jpeg?region=0%2C80%2C1260%2C630",
+        "http://cdn.atomix.vg/wp-content/uploads/2016/06/BESPIN.jpg",
+        "https://vignette.wikia.nocookie.net/starwars/images/d/dd/ST-ewokvillage.jpg/revision/latest?cb=20070811234556",
+        "https://vignette.wikia.nocookie.net/starwars/images/0/01/Theed-MoaTM.png/revision/latest?cb=20121002233339",
+        "https://vignette.wikia.nocookie.net/starwars/images/6/66/Coruscant_landscape_RotS.png/revision/latest?cb=20140825132625",
+        "https://lumiere-a.akamaihd.net/v1/images/databank_kamino_01_169_f9027822.jpeg?region=0%2C0%2C1560%2C878&width=768",
+        "https://lumiere-a.akamaihd.net/v1/images/databank_geonosis_01_169_1d04e086.jpeg?region=0%2C0%2C1560%2C878&width=768",
+    ];
+    peticion.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            planets = JSON.parse(this.responseText)
+            for(i=0; i<planets.results.length; i++)
+            {
+                datosTxt += "<div class=\"col-md-3 card\" style=\"width: 18rem; margin: 1%;\">" +
+                    
+                    "<div class=\"card-body\">" +
+                        "<img class=\"card-img-top\" src=" + imagePlanets[i] + " alt=\"Card image cap\">" +
+                    "<h5 class=\"card-title\">" + planets.results[i].name + "</h5>" +
+                    
+                    "<p class=\"card-text\">" +
+                    "<p>Clima:" + planets.results[i].climate + "</p>" +
+                    "<p>Gravedad:" + planets.results[i].gravity + "</p>" +
+                    "<p>Población:" +planets.results[i].population + "</p>" +
+                    "</p></div></div>"
+
+            }
+            if(document.getElementById('planets'))
+            {
+                document.getElementById('planets').innerHTML = datosTxt;
+            }
+            
+        }
+    } 
+    peticion.open('GET','https://swapi.co/api/planets/',true);
+    peticion.send();
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Cinzel');
+    </style>
+    <title>Star Wars</title>
+</head>
+
+<body style="font-family: 'Cinzel', serif; background-image: url(http://getwallpapers.com/wallpaper/full/d/1/7/30099.jpg)">
+    <div class="container">
+        <section>
+            <img style="width: 30%; margin: 3%;" src="http://aws.hackingchristianity.net/wp-content/files/Star-Wars-Episode-7-The-Force-Awakens-Logo.jpg">
+        </section>
+        <section>
+            <h3 style="color: #fff">Naves de Star Wars</h3>
+            <div class="row" id="starships">
+
+            </div>
+        </section>
+
+    </div>
+</body>
+<script>
+    var peticion = new XMLHttpRequest();
+    var datosTxt = "";
+    var imageStarships = [
+        "https://vignette.wikia.nocookie.net/starwars/images/d/d2/ReaperStarDestroyer.jpg/revision/latest?cb=20141218070733",
+        "https://vignette.wikia.nocookie.net/starwars/images/5/5b/Imperial_Sentinel-class_shuttle.png/revision/latest?cb=20161008235432",
+        "https://vignette.wikia.nocookie.net/starwars/images/e/ee/DeathStar2.jpg/revision/latest?cb=20150615015212",
+        "https://media.golfdigest.com/photos/5ad4e8c370e68e282f66ed88/master/w_768,c_limit/falcon.png",
+        "https://lumiere-a.akamaihd.net/v1/images/Y-Wing-Fighter_0e78c9ae.jpeg?region=0%2C0%2C1536%2C864&width=768",
+        "https://vignette.wikia.nocookie.net/es.starwars/images/f/ff/X-wing_SWGTCG.jpg/revision/latest?cb=20100128221232",
+        "https://vignette.wikia.nocookie.net/starwars/images/0/0a/Bright_SWG.jpg/revision/latest?cb=20090106182622",
+        "https://vignette.wikia.nocookie.net/starwars/images/b/ba/Slave_I_DICE.png/revision/latest?cb=20170825000729",
+        "https://vignette.wikia.nocookie.net/starwars/images/d/d3/ImperialShuttle-DB.png/revision/latest?cb=20150920051331",
+        "https://vignette.wikia.nocookie.net/starwarsmush/images/2/2c/Ship_capital_nebb01.jpg/revision/latest?cb=20090619153131",
+    ];
+    peticion.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            starships = JSON.parse(this.responseText)
+            for(i=0; i<starships.results.length; i++)
+            {
+                datosTxt += "<div class=\"col-md-3 card\" style=\"width: 18rem; margin: 1%;\">" +
+                    
+                    "<div class=\"card-body\">" +
+                        "<img class=\"card-img-top\" src=" + imageStarships[i] + " alt=\"Card image cap\">" +
+                    "<h5 class=\"card-title\">" + starships.results[i].name + "</h5>" +
+                    
+                    "<p class=\"card-text\">" +
+                    "<p>Modelo:" + starships.results[i].model+ "</p>" +
+                    "<p>Capacidad de carga:" + starships.results[i].cargo_capacity + "</p>" +
+                    "<p>Mecánicos:" +starships.results[i].manufacturer + "</p>" +
+                    "</p></div></div>"
+
+            }
+            if(document.getElementById('starships'))
+            {
+                document.getElementById('starships').innerHTML = datosTxt;
+            }
+            
+        }
+    } 
+    peticion.open('GET','https://swapi.co/api/starships/',true);
+    peticion.send();
+</script>
+
+</html>
