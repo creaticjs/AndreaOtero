@@ -1,0 +1,22 @@
+body {
+    background-image: url(https://k36.kn3.net/taringa/1/0/6/5/2/6/99/cpjrrr/185.jpg?5135);
+    padding: 10%;
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+#messageDiv {
+    color: #fff;
+    border: solid;
+    width: 40%;
+    height: auto;
+    padding: 1%;
+}
